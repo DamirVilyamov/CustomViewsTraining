@@ -21,6 +21,7 @@ class CustomView(context: Context, attrs: AttributeSet) : ConstraintLayout(conte
     var button4: Button
     var button5: Button
     var activeButtonsList = ArrayList<Button>()
+    private var areButtonsActive = false
 
     init {
         initializeViews(context)
@@ -67,26 +68,29 @@ class CustomView(context: Context, attrs: AttributeSet) : ConstraintLayout(conte
     override fun onFinishInflate() {
         super.onFinishInflate()
         mainButton.setOnLongClickListener(View.OnLongClickListener {
-            Log.d(TAG, "longclick: ")
-            var latency = 0L
-            for (button in activeButtonsList) {
-                latency += 200L
-                button.postDelayed({
-                    button.visibility = View.VISIBLE
-                }, latency)
+            if (!areButtonsActive) {
+                Log.d(TAG, "longclick: ")
+                var latency = 0L
+                for (button in activeButtonsList) {
+                    latency += 200L
+                    button.postDelayed({
+                        button.visibility = View.VISIBLE
+                    }, latency)
+                }
+                areButtonsActive = true
+            } else if (areButtonsActive) {
+                var latency = 0L
+                for (button in activeButtonsList.asReversed()) {
+                    latency += 200L
+                    button.postDelayed({
+                        button.visibility = View.INVISIBLE
+                    }, latency)
+                }
+                areButtonsActive = false
             }
-            latency = 0
             return@OnLongClickListener true
         })
-        mainButton.setOnClickListener {
-            var latency = 0L
-            for (button in activeButtonsList.asReversed()) {
-                latency += 200L
-                button.postDelayed({
-                    button.visibility = View.INVISIBLE
-                }, latency)
-            }
-            latency = 0
-        }
+
+
     }
 }
