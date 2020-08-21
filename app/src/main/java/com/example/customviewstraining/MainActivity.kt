@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        main_button.setOnLongClickListener(View.OnLongClickListener {
+        /*main_button.setOnLongClickListener(View.OnLongClickListener {
             Log.d(TAG, "longclick: ")
             button.postDelayed({
                 Log.d(TAG, "onCreate: postdelayed called")
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         }
         button3.setOnClickListener {
             nextColor(it)
-        }
+        }*/
 
 
 
