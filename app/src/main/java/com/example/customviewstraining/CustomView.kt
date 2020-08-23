@@ -13,23 +13,15 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 
 
-class CustomView : ConstraintLayout {
-
-    constructor(context: Context) : super(context) {
-        initializeViews(context)
-    }
-
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        initializeViews(context, attrs)
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    ) {
-        initializeViews(context, attrs, defStyleAttr)
-    }
+class CustomView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : ConstraintLayout(
+    context,
+    attrs,
+    defStyleAttr
+) {
 
     private val defButtonBackGreen: Drawable? =
         ContextCompat.getDrawable(context, R.drawable.round_button_green)
@@ -178,5 +170,9 @@ class CustomView : ConstraintLayout {
                 button.background = ContextCompat.getDrawable(context, R.drawable.round_button_red)
             }
         }
+    }
+
+    init {
+        initializeViews(context, attrs, defStyleAttr)
     }
 }
