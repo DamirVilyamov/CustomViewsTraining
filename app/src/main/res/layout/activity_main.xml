@@ -12,7 +12,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:numberOfSmallButtons="4"
+        app:numberOfSmallButtons="5"
+        app:button1Background="@drawable/round_button"
+        app:button2Background="@drawable/round_button"
+        app:button3Background="@drawable/round_button"
+        app:button4Background="@drawable/round_button"
+        app:button5Background="@drawable/round_button"
         app:layout_constraintStart_toStartOf="parent"
         />
 

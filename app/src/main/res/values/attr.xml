@@ -2,15 +2,10 @@
 <resources>
     <declare-styleable name="CustomView">
         <attr name="numberOfSmallButtons" format="integer"/>
-        <attr name="button1Color" format="color"/>
-        <attr name="button2Color" format="color"/>
-        <attr name="button3Color" format="color"/>
-        <attr name="button4Color" format="color"/>
-        <attr name="button5Color" format="color"/>
-        <attr name="button1Background" format="integer"/>
-        <attr name="button2Background" format="integer"/>
-        <attr name="button3Background" format="integer"/>
-        <attr name="button4Background" format="integer"/>
-        <attr name="button5Background" format="integer"/>
+        <attr name="button1Background" format="reference|color"/>
+        <attr name="button2Background" format="reference|color"/>
+        <attr name="button3Background" format="reference|color"/>
+        <attr name="button4Background" format="reference|color"/>
+        <attr name="button5Background" format="reference|color"/>
     </declare-styleable>
 </resources>
