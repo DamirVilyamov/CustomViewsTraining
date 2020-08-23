@@ -8,7 +8,7 @@
         android:id="@+id/main_button"
         android:layout_width="96dp"
         android:layout_height="96dp"
-        android:background="@drawable/ripple_main_button"
+        android:background="@drawable/circle_button"
         android:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

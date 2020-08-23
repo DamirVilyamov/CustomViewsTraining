@@ -37,6 +37,10 @@ class CustomView : ConstraintLayout {
         ContextCompat.getDrawable(context, R.drawable.round_button_red)
     private val defButtonBackYellow: Drawable? =
         ContextCompat.getDrawable(context, R.drawable.round_button_yellow)
+    private val defMainButtonBackActive: Drawable? =
+        ContextCompat.getDrawable(context, R.drawable.circle_button_active_state)
+    private val defMainButtonBackInactive: Drawable? =
+        ContextCompat.getDrawable(context, R.drawable.circle_button)
 
     private var numOfButtons: Int = 3
     private val TAG = "CustomView"
@@ -140,6 +144,7 @@ class CustomView : ConstraintLayout {
                         button.visibility = View.VISIBLE
                     }, latency)
                 }
+                mainButton.background = defMainButtonBackActive
                 areButtonsActive = true
             } else if (areButtonsActive) {
                 var latency = 0L
@@ -149,6 +154,7 @@ class CustomView : ConstraintLayout {
                         button.visibility = View.INVISIBLE
                     }, latency)
                 }
+                mainButton.background = defMainButtonBackInactive
                 areButtonsActive = false
             }
             return@OnLongClickListener true
