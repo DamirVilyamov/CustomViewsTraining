@@ -56,21 +56,6 @@ class CustomView @JvmOverloads constructor(
         attrs: AttributeSet? = null,
         defStyleAttr: Int? = null
     ) {
-
-        val typedArray: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.CustomView)
-        numOfButtons = typedArray.getInt(R.styleable.CustomView_numberOfSmallButtons, 3)
-        button1BackgroundRes =
-            typedArray.getDrawable(R.styleable.CustomView_button1Background)
-        button2BackgroundRes =
-            typedArray.getDrawable(R.styleable.CustomView_button2Background)
-        button3BackgroundRes =
-            typedArray.getDrawable(R.styleable.CustomView_button3Background)
-        button4BackgroundRes =
-            typedArray.getDrawable(R.styleable.CustomView_button4Background)
-        button5BackgroundRes =
-            typedArray.getDrawable(R.styleable.CustomView_button5Background)
-        typedArray.recycle()
-
         val inflater = context
             .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         inflater.inflate(R.layout.custom_view, this)
@@ -82,41 +67,37 @@ class CustomView @JvmOverloads constructor(
         button4 = this.findViewById(R.id.button4)
         button5 = this.findViewById(R.id.button5)
 
+        val typedArray: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.CustomView)
+        numOfButtons = typedArray.getInt(R.styleable.CustomView_numberOfSmallButtons, 3)
+        getBackgrounds(typedArray)
+        typedArray.recycle()
+        setBackgrounds()
+
+
+
 
         when (numOfButtons) {
             3 -> {
                 with(activeButtonsList) {
-                    button1.background = button1BackgroundRes
                     add(button1)
-                    button3.background = button3BackgroundRes
                     add(button3)
-                    button5.background = button5BackgroundRes
                     add(button5)
                 }
             }
             4 -> {
                 with(activeButtonsList) {
-                    button1.background = button1BackgroundRes
                     add(button1)
-                    button2.background = button2BackgroundRes
                     add(button2)
-                    button4.background = button4BackgroundRes
                     add(button4)
-                    button5.background = button5BackgroundRes
                     add(button5)
                 }
             }
             5 -> {
                 with(activeButtonsList) {
-                    button1.background = button1BackgroundRes
                     add(button1)
-                    button2.background = button2BackgroundRes
                     add(button2)
-                    button3.background = button3BackgroundRes
                     add(button3)
-                    button4.background = button4BackgroundRes
                     add(button4)
-                    button5.background = button5BackgroundRes
                     add(button5)
                 }
             }
@@ -138,7 +119,11 @@ class CustomView @JvmOverloads constructor(
                 }
                 mainButton.background = defMainButtonBackActive
                 areButtonsActive = true
-            } else if (areButtonsActive) {
+            }
+            return@OnLongClickListener true
+        })
+        mainButton.setOnClickListener {
+            if (areButtonsActive) {
                 var latency = 0L
                 for (button in activeButtonsList.asReversed()) {
                     latency += 200L
@@ -149,8 +134,7 @@ class CustomView @JvmOverloads constructor(
                 mainButton.background = defMainButtonBackInactive
                 areButtonsActive = false
             }
-            return@OnLongClickListener true
-        })
+        }
 
 
     }
@@ -170,6 +154,30 @@ class CustomView @JvmOverloads constructor(
                 button.background = ContextCompat.getDrawable(context, R.drawable.round_button_red)
             }
         }
+    }
+
+    private fun getBackgrounds(typedArray: TypedArray) {
+        button1BackgroundRes =
+            typedArray.getDrawable(R.styleable.CustomView_button1Background)
+        button2BackgroundRes =
+            typedArray.getDrawable(R.styleable.CustomView_button2Background)
+        button3BackgroundRes =
+            typedArray.getDrawable(R.styleable.CustomView_button3Background)
+        button4BackgroundRes =
+            typedArray.getDrawable(R.styleable.CustomView_button4Background)
+        button5BackgroundRes =
+            typedArray.getDrawable(R.styleable.CustomView_button5Background)
+    }
+
+    private fun setBackgrounds() {
+        //set them anyway because they always have to be active
+        button1.background = button1BackgroundRes
+        button2.background = button2BackgroundRes
+        button3.background = button3BackgroundRes
+        button4.background = button4BackgroundRes
+        button5.background = button5BackgroundRes
+
+
     }
 
     init {
